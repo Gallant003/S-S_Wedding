@@ -345,7 +345,110 @@
     .equip-brands  { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
     .equip-note    { font-size: 0.72rem; color: var(--gold-dim); font-style: italic; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.05); line-height: 1.5; }
 
-    /* ── FOOTER ── */
+    /* ── SCHEDULE PAGE ── */
+    .schedule-hero { padding: 4rem 2.5rem 2rem; max-width: 760px; margin: 0 auto; }
+    .schedule-hero h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300; font-style: italic; color: var(--cream); margin-bottom: 0.4rem;
+    }
+    .schedule-hero p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
+
+    .schedule-wrap {
+      max-width: 760px; margin: 0 auto;
+      padding: 1rem 2.5rem 5rem;
+      position: relative;
+    }
+
+    .schedule-section-header {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold-dim); margin: 2.5rem 0 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .schedule-section-header::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(201,168,76,0.25), transparent);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 1.25rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .timeline-time {
+      font-size: 0.72rem; color: var(--text-faint);
+      letter-spacing: 0.06em; padding-top: 0.85rem;
+      text-align: right; flex-shrink: 0;
+    }
+
+    .timeline-card {
+      background: var(--dark-card);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 6px; padding: 0.75rem 1rem;
+      transition: border-color 0.2s;
+    }
+    .timeline-card:hover { border-color: rgba(201,168,76,0.25); }
+
+    .timeline-card.highlight {
+      border-color: rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.05);
+    }
+
+    .timeline-event {
+      font-size: 0.88rem; color: var(--cream); font-weight: 400;
+      line-height: 1.3;
+    }
+    .timeline-detail {
+      font-size: 0.72rem; color: var(--text-dim); margin-top: 0.2rem; line-height: 1.5;
+    }
+    .timeline-song {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      margin-top: 0.35rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem; color: var(--gold-light); font-style: italic;
+    }
+    .timeline-song::before {
+      content: '♪';
+      font-style: normal; font-size: 0.75rem; color: var(--gold-dim);
+    }
+    .timeline-song-artist {
+      font-size: 0.68rem; color: var(--text-faint);
+      font-style: normal; font-family: 'Jost', sans-serif;
+      margin-left: 0.2rem;
+    }
+    .timeline-note {
+      font-size: 0.67rem; color: var(--gold-dim);
+      font-style: italic; margin-top: 0.2rem;
+    }
+    .timeline-tbd {
+      font-size: 0.7rem; color: var(--text-faint);
+      font-style: italic; margin-top: 0.25rem;
+    }
+
+    .vendor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .vendor-card {
+      background: var(--dark-card);
+      border: 1px solid rgba(201,168,76,0.08);
+      border-radius: 6px; padding: 0.75rem 1rem;
+    }
+    .vendor-role { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.25rem; }
+    .vendor-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--cream); }
+    .vendor-contact { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.15rem; }
+
+    @media (max-width: 600px) {
+      .schedule-hero, .schedule-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .timeline-item { grid-template-columns: 60px 1fr; gap: 0 0.75rem; }
+      .timeline-time { font-size: 0.65rem; }
+    }
     footer {
       text-align: center; padding: 2rem;
       font-size: 0.7rem; color: var(--text-faint); letter-spacing: 0.1em;
@@ -372,6 +475,7 @@
     <ul class="nav-links">
       <li><a href="#" class="active" onclick="showPage('music', this)">Music</a></li>
       <li><a href="#" onclick="showPage('equipment', this)">Equipment</a></li>
+      <li><a href="#" onclick="showPage('schedule', this)">Schedule</a></li>
     </ul>
   </nav>
 
@@ -820,7 +924,405 @@
     </div>
   </div>
 
-  <footer>
+  <!-- ══════════════ SCHEDULE PAGE ══════════════ -->
+  <div id="page-schedule" class="page">
+
+    <div class="schedule-hero">
+      <p class="hero-eyebrow" style="text-align:left; margin-bottom:0.75rem;">Day of Schedule</p>
+      <h2>August 29, 2026</h2>
+      <p>River Crab · 414 S Range Rd, St. Clair, MI 48079 · Stephanie &amp; Stephen Gallant</p>
+    </div>
+
+    <div class="schedule-wrap">
+
+      <!-- REHEARSAL -->
+      <div class="schedule-section-header">Rehearsal — August 28</div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">3:00 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Set Up</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">5:00 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Rehearsal Begins</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:00 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Rehearsal Dinner</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">8:00 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Rehearsal Dinner Ends</div>
+        </div>
+      </div>
+
+      <!-- MORNING -->
+      <div class="schedule-section-header">Wedding Day Morning</div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">9:00 AM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Beautiful Crazy arrive to decorate</div>
+          <div class="timeline-detail">Setup &amp; coordination begins</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">TBD</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Photographer arrives</div>
+          <div class="timeline-detail">FairyTale Productions / Carina — number TBD</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">TBD</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Getting Ready + Photos</div>
+          <div class="timeline-detail">Girls getting ready photos · Guys getting ready photos</div>
+        </div>
+      </div>
+
+      <!-- AFTERNOON -->
+      <div class="schedule-section-header">Afternoon</div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">2:00 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Bride gets into her dress</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">2:00 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">DJ arrives</div>
+          <div class="timeline-detail">Grant Morin — sets up equipment</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">2:30 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">First Look — Bride &amp; Dad</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">2:40 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Bridal party &amp; family photos with bride</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">3:00 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Bartender arrives</div>
+          <div class="timeline-detail">Ron Bitto · 586-945-7016</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">3:30 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Guests begin to arrive</div>
+          <div class="timeline-detail">Beautiful Crazy sets up cocktail meat &amp; cheese</div>
+        </div>
+      </div>
+
+      <!-- CEREMONY -->
+      <div class="schedule-section-header">Ceremony</div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">3:30 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Guest Seating Music begins</div>
+          <div class="timeline-song">Instrumental String Covers<span class="timeline-song-artist">— Vitamin String Quartet, Duomo, Ana Done</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">4:00 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Ceremony begins</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time"></div>
+        <div class="timeline-card">
+          <div class="timeline-event">Officiant, MOB &amp; SMOG enter</div>
+          <div class="timeline-tbd">♪ Song TBD</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time"></div>
+        <div class="timeline-card">
+          <div class="timeline-event">Groom enters with Step-Mom</div>
+          <div class="timeline-song">TBD — Eagles or Bob Seger<span class="timeline-song-artist">— confirm soon</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time"></div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Wedding party processional — couples, one at a time</div>
+          <div class="timeline-song">Dreams<span class="timeline-song-artist">— The Cranberries, 4Tune Quartet string cover (YouTube)</span></div>
+          <div class="timeline-note">MOH &amp; Best Man · Flower girls included</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time"></div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Bride's entrance with Dad</div>
+          <div class="timeline-song">Surprise 🎁<span class="timeline-song-artist">— Stephanie's choice</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time"></div>
+        <div class="timeline-card">
+          <div class="timeline-event">Ceremony &amp; vows</div>
+          <div class="timeline-detail">Officiant: Joe Gallant (Father of the Groom)</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time"></div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Recessional</div>
+          <div class="timeline-tbd">♪ Song TBD</div>
+        </div>
+      </div>
+
+      <!-- COCKTAIL HOUR -->
+      <div class="schedule-section-header">Cocktail Hour</div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">4:20 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Catering arrives</div>
+          <div class="timeline-detail">Gary's Catering · 248-960-9100 x200</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">4:30 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Cocktail Hour</div>
+          <div class="timeline-song">Instrumental covers continue<span class="timeline-song-artist">— Stephanie's "Before Ceremony" playlist</span></div>
+          <div class="timeline-note">Confirm with Grant — same vibe or shift?</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">4:40 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Bride &amp; Groom photos</div>
+          <div class="timeline-detail">Until ~5:25 PM</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">5:15 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Seat guests for dinner</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">5:25 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Bride &amp; Groom — 10 min alone time</div>
+        </div>
+      </div>
+
+      <!-- RECEPTION -->
+      <div class="schedule-section-header">Reception</div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">5:35 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Grand March — Wedding party entrance</div>
+          <div class="timeline-detail">Couples announced one at a time · seated after entering</div>
+          <div class="timeline-song">Stadium Rave<span class="timeline-song-artist">— Spongebob Squarepants</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time"></div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Bride &amp; Groom grand entrance</div>
+          <div class="timeline-song">You &amp; Me — Flume Remix<span class="timeline-song-artist">— Disclosure · Flume (confirm version)</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">5:40 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Dinner — buffet</div>
+          <div class="timeline-detail">Tables released by DJ or caterer · Caterer maintains buffet</div>
+          <div class="timeline-tbd">♪ Background music — direction TBD</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">6:15 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Speeches</div>
+          <div class="timeline-detail">
+            Welcome — Bride &amp; Groom<br>
+            Best Man — Daniel Gallant<br>
+            Mother of Groom — Shirley Gallant<br>
+            Bride's Sister — Kimberley Valent<br>
+            Bride's Sister — Brittney Bautista
+          </div>
+          <div class="timeline-note">Bride: non-alcoholic champagne · Groom: champagne</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">6:55 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">First Dance — Bride &amp; Groom</div>
+          <div class="timeline-song">Surprise 🎁<span class="timeline-song-artist">— Stephen's choice for Stephanie</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:00 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Father / Daughter Dance</div>
+          <div class="timeline-song">Give Me Away<span class="timeline-song-artist">— Riley Roth (confirm version)</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:05 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Mother / Groom Dance</div>
+          <div class="timeline-tbd">♪ Song TBD — with step-mom</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:10 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Mother / Bride Dance</div>
+          <div class="timeline-tbd">♪ Confirm if happening</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:15 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Cake cutting</div>
+          <div class="timeline-song">So Easy<span class="timeline-song-artist">— Olivia Dean</span></div>
+          <div class="timeline-note">Stephen &amp; Stephanie only · keeping top layer</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:20 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Sign marriage license</div>
+          <div class="timeline-detail">Witnesses: Daniel Gallant (Best Man) &amp; Kimberly Valent (Sister of Bride) · black pen</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:25 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Anniversary dance</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:30 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Dance floor opens</div>
+          <div class="timeline-detail">Outside of tent · 2010s + 80s/90s mix, builds to late night</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9:45 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Late night snack</div>
+          <div class="timeline-tbd">Details TBD</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:00 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Tear down begins</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:30 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Last call</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:50 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Last dance</div>
+          <div class="timeline-tbd">♪ Song TBD</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">11:00 PM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Reception ends</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:00 AM</div>
+        <div class="timeline-card">
+          <div class="timeline-event">Everyone exits</div>
+        </div>
+      </div>
+
+      <!-- VENDORS -->
+      <div class="schedule-section-header">Vendors</div>
+      <div class="vendor-grid">
+        <div class="vendor-card">
+          <div class="vendor-role">Catering</div>
+          <div class="vendor-name">Gary's Catering</div>
+          <div class="vendor-contact">248-960-9100 x200</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Day-of Coordinators</div>
+          <div class="vendor-name">Beautiful Crazy</div>
+          <div class="vendor-contact">810-643-6834</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Bathroom Rentals</div>
+          <div class="vendor-name">Rockstar Rentals</div>
+          <div class="vendor-contact">586-834-8765</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Tent</div>
+          <div class="vendor-name">Knights Party Rental</div>
+          <div class="vendor-contact">248-238-2400 ext 4</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Photographer / Videographer</div>
+          <div class="vendor-name">FairyTale Productions</div>
+          <div class="vendor-contact">Contact TBD</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">DJ</div>
+          <div class="vendor-name">Grant Morin</div>
+          <div class="vendor-contact">Contact TBD</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Bartender</div>
+          <div class="vendor-name">Ron Bitto</div>
+          <div class="vendor-contact">586-945-7016</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Officiant</div>
+          <div class="vendor-name">Joe Gallant</div>
+          <div class="vendor-contact">Father of the Groom · contact TBD</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Hair / Makeup</div>
+          <div class="vendor-name">Lauren Walters</div>
+          <div class="vendor-contact">Family friend</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Photobooth</div>
+          <div class="vendor-name">Kruu</div>
+          <div class="vendor-contact">Online — needs setup</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
     <em>August 29, 2026</em> · Stephanie &amp; Stephen · River Crab, St. Clair MI
   </footer>
 
