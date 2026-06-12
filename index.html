@@ -6,29 +6,31 @@
   <title>August</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --burgundy:      #6B1A2A;
-      --gold:          #C9A84C;
-      --gold-light:    #E2C97E;
-      --gold-dim:      #9A7B34;
-      --cream:         #F5EFE0;
-      --dark:          #1A0A0E;
-      --dark-card:     #221018;
-      --text-main:     #F0E6D0;
-      --text-dim:      #B8A898;
-      --text-faint:    #7A6A5A;
+      /* St. Clair at dusk */
+      --crab:        #B3503E;   /* crab shell — warnings & do-not-play */
+      --current:     #67D6C5;   /* aqua current — structure & accents */
+      --glass:       #A9E8DE;   /* sea glass — bright accent text */
+      --tide:        #4E9B90;   /* low tide — dim labels */
+      --dusk:        #E9B468;   /* sunset on water — the music glows warm */
+      --foam:        #F2FAF7;   /* foam white */
+      --river:       #08141A;   /* deep dusk water */
+      --depth:       #0E2129;   /* card surface */
+      --text-main:   #E4F0EC;
+      --text-dim:    #9DB8B4;
+      --text-faint:  #5E7A78;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--dark);
+      background-color: var(--river);
       color: var(--text-main);
-      font-family: 'Jost', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 300;
       min-height: 100vh;
       overflow-x: hidden;
@@ -39,8 +41,9 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(107,26,42,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 80% 90%, rgba(201,168,76,0.08) 0%, transparent 60%);
+        radial-gradient(ellipse 90% 55% at 18% 0%, rgba(28,74,84,0.55) 0%, transparent 62%),
+        radial-gradient(ellipse 70% 60% at 85% 100%, rgba(233,180,104,0.07) 0%, transparent 58%),
+        radial-gradient(ellipse 50% 40% at 70% 30%, rgba(103,214,197,0.05) 0%, transparent 60%);
       pointer-events: none;
       z-index: 0;
     }
@@ -50,23 +53,23 @@
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1rem 2.5rem;
-      background: rgba(26,10,14,0.88);
+      background: rgba(8,20,26,0.86);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(103,214,197,0.15);
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Instrument Serif', serif;
       font-size: 1.5rem; font-weight: 300; font-style: italic;
-      color: var(--gold-light); letter-spacing: 0.04em;
+      color: var(--glass); letter-spacing: 0.04em;
     }
-    .nav-logo span { font-style: normal; font-weight: 600; color: var(--gold); }
+    .nav-logo span { font-style: normal; font-weight: 600; color: var(--current); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       color: var(--text-dim); text-decoration: none;
       font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
       transition: color 0.2s;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+    .nav-links a:hover, .nav-links a.active { color: var(--glass); }
 
     /* ── PAGES ── */
     .page { display: none; position: relative; z-index: 1; }
@@ -79,35 +82,72 @@
     }
     .hero-eyebrow {
       font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold-dim); margin-bottom: 1rem;
+      color: var(--tide); margin-bottom: 1rem;
     }
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Instrument Serif', serif;
       font-size: clamp(3.5rem, 8vw, 6rem);
       font-weight: 300; font-style: italic;
-      color: var(--cream); line-height: 1; margin-bottom: 0.5rem;
+      color: var(--foam); line-height: 1; margin-bottom: 0.5rem;
     }
-    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero h1 em { font-style: normal; color: var(--dusk); }
     .hero-date {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Instrument Serif', serif;
       font-size: 1.1rem; color: var(--text-dim); letter-spacing: 0.15em;
     }
-    .hero-divider {
-      width: 60px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 1.5rem auto;
+    .wave-divider {
+      width: 120px; height: 12px;
+      margin: 1.4rem auto;
+      color: var(--current);
+      overflow: hidden;
+    }
+    .wave-divider svg { width: 200%; height: 100%; display: block; animation: drift 5s linear infinite; }
+    @keyframes drift { from { transform: translateX(0); } to { transform: translateX(-25%); } }
+
+    /* ── water eggs ── */
+    .ripple {
+      position: fixed; pointer-events: none; z-index: 999;
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 1.5px solid var(--current);
+      transform: translate(-50%, -50%);
+      animation: ripple-out 0.9s ease-out forwards;
+    }
+    .ripple.r2 { animation-delay: 0.15s; opacity: 0; animation-fill-mode: forwards; }
+    @keyframes ripple-out {
+      0% { opacity: 0.8; scale: 1; }
+      100% { opacity: 0; scale: 9; }
+    }
+    #crab {
+      display: inline-block; cursor: pointer; font-style: normal;
+      filter: saturate(0.85); transition: transform 0.2s;
+    }
+    #crab:hover { transform: translateY(-2px); }
+    .crab-runner {
+      position: fixed; bottom: 12px; left: -60px; z-index: 998;
+      font-size: 1.6rem; pointer-events: none;
+      animation: scuttle 3.5s ease-in-out forwards;
+    }
+    @keyframes scuttle {
+      0%   { left: -60px;  transform: translateY(0) scaleX(1); }
+      25%  { transform: translateY(-6px) scaleX(1); }
+      50%  { transform: translateY(0) scaleX(1); }
+      75%  { transform: translateY(-6px) scaleX(1); }
+      100% { left: 105vw; transform: translateY(0) scaleX(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
     }
     .deadline-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(201,168,76,0.1);
-      border: 1px solid rgba(201,168,76,0.25);
+      background: rgba(103,214,197,0.1);
+      border: 1px solid rgba(103,214,197,0.25);
       border-radius: 2rem; padding: 0.4rem 1rem;
       font-size: 0.75rem; letter-spacing: 0.1em;
-      color: var(--gold-light); margin-bottom: 2.5rem;
+      color: var(--glass); margin-bottom: 2.5rem;
     }
     .deadline-badge .dot {
       width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold); animation: pulse 2s infinite;
+      background: var(--current); animation: pulse 2s infinite;
     }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
 
@@ -119,11 +159,11 @@
     }
 
     .collapse-section {
-      border: 1px solid rgba(201,168,76,0.12);
+      border: 1px solid rgba(103,214,197,0.12);
       border-radius: 8px;
       margin-bottom: 0.75rem;
       overflow: hidden;
-      background: var(--dark-card);
+      background: var(--depth);
       animation: fadeUp 0.4s ease both;
     }
     .collapse-section:nth-child(1) { animation-delay: 0.04s; }
@@ -149,18 +189,18 @@
       color: inherit;
       transition: background 0.2s;
     }
-    .collapse-trigger:hover { background: rgba(201,168,76,0.04); }
+    .collapse-trigger:hover { background: rgba(103,214,197,0.04); }
 
     .collapse-trigger-left {
       display: flex; align-items: center; gap: 1rem;
     }
     .collapse-icon {
       font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--gold-dim); min-width: 60px;
+      color: var(--tide); min-width: 60px;
     }
     .collapse-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem; color: var(--cream); font-weight: 400;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.15rem; color: var(--foam); font-weight: 400;
     }
     .collapse-meta {
       font-size: 0.72rem; color: var(--text-faint); letter-spacing: 0.06em;
@@ -180,7 +220,7 @@
     }
     .collapse-section.open .collapse-body {
       max-height: 2000px;
-      border-top-color: rgba(201,168,76,0.08);
+      border-top-color: rgba(103,214,197,0.08);
     }
     .collapse-inner {
       padding: 1.25rem 1.4rem 1.4rem;
@@ -195,12 +235,12 @@
 
     .segment-card {
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(201,168,76,0.08);
+      border: 1px solid rgba(103,214,197,0.08);
       border-radius: 6px;
       overflow: hidden;
       transition: border-color 0.2s;
     }
-    .segment-card:hover { border-color: rgba(201,168,76,0.22); }
+    .segment-card:hover { border-color: rgba(103,214,197,0.22); }
 
     .card-header {
       display: flex; align-items: center; justify-content: space-between;
@@ -219,20 +259,20 @@
       font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
       padding: 0.18rem 0.55rem; border-radius: 1rem; font-weight: 500;
     }
-    .status-locked  { background: rgba(107,26,42,0.4); color: #E08090; border: 1px solid rgba(107,26,42,0.6); }
-    .status-maybe   { background: rgba(201,168,76,0.15); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.3); }
+    .status-locked  { background: rgba(103,214,197,0.14); color: var(--glass); border: 1px solid rgba(103,214,197,0.4); }
+    .status-maybe   { background: rgba(103,214,197,0.15); color: var(--glass); border: 1px solid rgba(103,214,197,0.3); }
     .status-empty   { background: rgba(255,255,255,0.04); color: var(--text-faint); border: 1px solid rgba(255,255,255,0.08); }
-    .status-surprise{ background: rgba(138,43,226,0.15); color: #C084FC; border: 1px solid rgba(138,43,226,0.3); }
+    .status-surprise{ background: rgba(154,128,220,0.16); color: #C9B8F5; border: 1px solid rgba(154,128,220,0.38); }
 
     .card-body { padding: 0.75rem 1rem 1rem; }
     .song-entry { display: flex; flex-direction: column; gap: 0.12rem; margin-bottom: 0.6rem; }
     .song-entry:last-child { margin-bottom: 0; }
     .song-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem; color: var(--cream); line-height: 1.2;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.15rem; color: var(--dusk); line-height: 1.2;
     }
     .song-artist { font-size: 0.72rem; color: var(--text-dim); }
-    .song-note   { font-size: 0.65rem; color: var(--gold-dim); font-style: italic; margin-top: 0.08rem; }
+    .song-note   { font-size: 0.65rem; color: var(--tide); font-style: italic; margin-top: 0.08rem; }
     .empty-state { font-size: 0.78rem; color: var(--text-faint); font-style: italic; }
 
     /* ── YOUTUBE EMBED ── */
@@ -274,11 +314,11 @@
       display: flex; flex-wrap: wrap; gap: 0.4rem;
     }
     .dnp-list li {
-      background: rgba(107,26,42,0.2);
-      border: 1px solid rgba(107,26,42,0.4);
+      background: rgba(179,80,62,0.2);
+      border: 1px solid rgba(179,80,62,0.4);
       border-radius: 1rem;
       padding: 0.2rem 0.7rem;
-      font-size: 0.72rem; color: #E08090;
+      font-size: 0.72rem; color: #E8957F;
     }
     .dnp-empty {
       font-size: 0.8rem; color: var(--text-faint); font-style: italic;
@@ -292,37 +332,37 @@
     }
     .playlist-card {
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(201,168,76,0.08);
+      border: 1px solid rgba(103,214,197,0.08);
       border-radius: 6px; overflow: hidden;
     }
     .playlist-label {
       padding: 0.75rem 1rem 0.5rem;
       border-bottom: 1px solid rgba(255,255,255,0.04);
     }
-    .playlist-name { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--cream); }
+    .playlist-name { font-family: 'Instrument Serif', serif; font-size: 0.95rem; color: var(--foam); }
     .playlist-desc { font-size: 0.68rem; color: var(--text-faint); margin-top: 0.15rem; }
     .playlist-card iframe { display: block; width: 100%; border: none; }
 
     /* ── EQUIPMENT PAGE ── */
     .equip-hero { padding: 4rem 2.5rem 2rem; max-width: 900px; margin: 0 auto; }
     .equip-hero h2 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Instrument Serif', serif;
       font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 300; font-style: italic; color: var(--cream); margin-bottom: 0.5rem;
+      font-weight: 300; font-style: italic; color: var(--foam); margin-bottom: 0.5rem;
     }
     .equip-hero p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
 
     .deadline-block {
       margin: 0 2.5rem 2.5rem; max-width: 900px;
       margin-left: auto; margin-right: auto;
-      background: rgba(201,168,76,0.06);
-      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(103,214,197,0.06);
+      border: 1px solid rgba(103,214,197,0.2);
       border-radius: 8px; padding: 1.25rem 1.5rem;
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 1rem;
     }
-    .deadline-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.3rem; }
-    .deadline-value { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-light); }
+    .deadline-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--tide); margin-bottom: 0.3rem; }
+    .deadline-value { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: var(--dusk); }
     .deadline-sub   { font-size: 0.72rem; color: var(--text-faint); margin-top: 0.15rem; }
 
     .equip-grid {
@@ -330,27 +370,27 @@
       gap: 1.25rem; padding: 0 2.5rem 4rem; max-width: 900px; margin: 0 auto;
     }
     .equip-card {
-      background: var(--dark-card);
-      border: 1px solid rgba(201,168,76,0.1);
+      background: var(--depth);
+      border: 1px solid rgba(103,214,197,0.1);
       border-radius: 8px; padding: 1.25rem;
     }
-    .equip-card-title { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.75rem; }
+    .equip-card-title { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tide); margin-bottom: 0.75rem; }
     .equip-item { margin-bottom: 0.6rem; }
-    .equip-item-main { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--cream); }
+    .equip-item-main { font-family: 'Instrument Serif', serif; font-size: 1.05rem; color: var(--foam); }
     .equip-item-sub  { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.1rem; line-height: 1.5; }
     .equip-tag { display: inline-block; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 1rem; margin-top: 0.3rem; }
-    .tag-preferred { background: rgba(201,168,76,0.15); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.25); }
+    .tag-preferred { background: rgba(103,214,197,0.15); color: var(--glass); border: 1px solid rgba(103,214,197,0.25); }
     .tag-ok        { background: rgba(255,255,255,0.05); color: var(--text-dim); border: 1px solid rgba(255,255,255,0.1); }
-    .tag-avoid     { background: rgba(107,26,42,0.3); color: #E08090; border: 1px solid rgba(107,26,42,0.5); }
+    .tag-avoid     { background: rgba(179,80,62,0.3); color: #E8957F; border: 1px solid rgba(179,80,62,0.5); }
     .equip-brands  { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
-    .equip-note    { font-size: 0.72rem; color: var(--gold-dim); font-style: italic; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.05); line-height: 1.5; }
+    .equip-note    { font-size: 0.72rem; color: var(--tide); font-style: italic; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.05); line-height: 1.5; }
 
     /* ── SCHEDULE PAGE ── */
     .schedule-hero { padding: 4rem 2.5rem 2rem; max-width: 760px; margin: 0 auto; }
     .schedule-hero h2 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Instrument Serif', serif;
       font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 300; font-style: italic; color: var(--cream); margin-bottom: 0.4rem;
+      font-weight: 300; font-style: italic; color: var(--foam); margin-bottom: 0.4rem;
     }
     .schedule-hero p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
 
@@ -362,12 +402,12 @@
 
     .schedule-section-header {
       font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold-dim); margin: 2.5rem 0 1rem;
+      color: var(--tide); margin: 2.5rem 0 1rem;
       display: flex; align-items: center; gap: 1rem;
     }
     .schedule-section-header::after {
       content: ''; flex: 1; height: 1px;
-      background: linear-gradient(90deg, rgba(201,168,76,0.25), transparent);
+      background: linear-gradient(90deg, rgba(103,214,197,0.25), transparent);
     }
 
     .timeline-item {
@@ -386,20 +426,20 @@
     }
 
     .timeline-card {
-      background: var(--dark-card);
-      border: 1px solid rgba(201,168,76,0.1);
+      background: var(--depth);
+      border: 1px solid rgba(103,214,197,0.1);
       border-radius: 6px; padding: 0.75rem 1rem;
       transition: border-color 0.2s;
     }
-    .timeline-card:hover { border-color: rgba(201,168,76,0.25); }
+    .timeline-card:hover { border-color: rgba(103,214,197,0.25); }
 
     .timeline-card.highlight {
-      border-color: rgba(201,168,76,0.25);
-      background: rgba(201,168,76,0.05);
+      border-color: rgba(103,214,197,0.25);
+      background: rgba(103,214,197,0.05);
     }
 
     .timeline-event {
-      font-size: 0.88rem; color: var(--cream); font-weight: 400;
+      font-size: 0.88rem; color: var(--foam); font-weight: 400;
       line-height: 1.3;
     }
     .timeline-detail {
@@ -408,20 +448,22 @@
     .timeline-song {
       display: inline-flex; align-items: center; gap: 0.35rem;
       margin-top: 0.35rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem; color: var(--gold-light); font-style: italic;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1rem; color: var(--dusk); font-style: italic;
     }
     .timeline-song::before {
       content: '♪';
-      font-style: normal; font-size: 0.75rem; color: var(--gold-dim);
+      font-style: normal; font-size: 0.75rem; color: var(--tide);
+      animation: bob 3.2s ease-in-out infinite;
     }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
     .timeline-song-artist {
       font-size: 0.68rem; color: var(--text-faint);
-      font-style: normal; font-family: 'Jost', sans-serif;
+      font-style: normal; font-family: 'Space Grotesk', sans-serif;
       margin-left: 0.2rem;
     }
     .timeline-note {
-      font-size: 0.67rem; color: var(--gold-dim);
+      font-size: 0.67rem; color: var(--tide);
       font-style: italic; margin-top: 0.2rem;
     }
     .timeline-tbd {
@@ -436,12 +478,12 @@
       margin-top: 0.5rem;
     }
     .vendor-card {
-      background: var(--dark-card);
-      border: 1px solid rgba(201,168,76,0.08);
+      background: var(--depth);
+      border: 1px solid rgba(103,214,197,0.08);
       border-radius: 6px; padding: 0.75rem 1rem;
     }
-    .vendor-role { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.25rem; }
-    .vendor-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--cream); }
+    .vendor-role { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tide); margin-bottom: 0.25rem; }
+    .vendor-name { font-family: 'Instrument Serif', serif; font-size: 1rem; color: var(--foam); }
     .vendor-contact { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.15rem; }
 
     @media (max-width: 600px) {
@@ -455,7 +497,7 @@
       border-top: 1px solid rgba(255,255,255,0.04);
       position: relative; z-index: 1;
     }
-    footer em { color: var(--gold-dim); font-style: normal; }
+    footer em { color: var(--tide); font-style: normal; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
@@ -486,7 +528,11 @@
       <p class="hero-eyebrow">Stephanie &amp; Stephen</p>
       <h1>August <em>29</em></h1>
       <p class="hero-date">River Crab · St. Clair, Michigan</p>
-      <div class="hero-divider"></div>
+      <div class="wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 120 12" preserveAspectRatio="none">
+          <path class="wave-path" d="M0,6 C10,2 20,10 30,6 C40,2 50,10 60,6 C70,2 80,10 90,6 C100,2 110,10 120,6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="deadline-badge">
         <span class="dot"></span>
         Playlist deadline · Week of June 15
@@ -576,9 +622,9 @@
                   <span class="card-title">Recessional</span>
                   <span class="card-time">~4:20 PM</span>
                 </div>
-                <div class="card-status"><span class="status-pill status-empty">Needs a song</span></div>
+                <div class="card-status"><span class="status-pill status-maybe">Final pick in progress</span></div>
                 <div class="card-body">
-                  <span class="empty-state">Nothing picked yet</span>
+                  <span class="empty-state">High-energy euphoric pick — candidates being auditioned now</span>
                 </div>
               </div>
 
@@ -617,12 +663,12 @@
                   <span class="card-title">Couple's Grand Entrance</span>
                   <span class="card-time">5:35 PM</span>
                 </div>
-                <div class="card-status"><span class="status-pill status-maybe">Pending confirm</span></div>
+                <div class="card-status"><span class="status-pill status-locked">✓ Locked</span></div>
                 <div class="card-body">
                   <div class="song-entry">
-                    <span class="song-title">You &amp; Me — Flume Remix</span>
-                    <span class="song-artist">Disclosure · Eliza Doolittle · Flume</span>
-                    <span class="song-note">Confirm exact version</span>
+                    <span class="song-title">High You Are — Branchez Remix</span>
+                    <span class="song-artist">What So Not · Branchez</span>
+                    <span class="song-note">Cue the build during the announcement — drop lands on the walk-in</span>
                   </div>
                 </div>
               </div>
@@ -632,9 +678,13 @@
                   <span class="card-title">Dinner</span>
                   <span class="card-time">5:40 – 6:40 PM</span>
                 </div>
-                <div class="card-status"><span class="status-pill status-empty">Needs a vibe</span></div>
+                <div class="card-status"><span class="status-pill status-locked">✓ Vibe locked</span></div>
                 <div class="card-body">
-                  <span class="empty-state">Background music — direction TBD</span>
+                  <div class="song-entry">
+                    <span class="song-title">Chill Melodic Electronic</span>
+                    <span class="song-artist">Flume · Mura Masa · ford. energy — Grant curates</span>
+                    <span class="song-note">Seeds: Take a Chance · The Unknown · What If I Go?</span>
+                  </div>
                 </div>
               </div>
 
@@ -724,9 +774,13 @@
                   <span class="card-title">Last Dance</span>
                   <span class="card-time">10:50 PM</span>
                 </div>
-                <div class="card-status"><span class="status-pill status-empty">Needs a song</span></div>
+                <div class="card-status"><span class="status-pill status-locked">✓ Locked</span></div>
                 <div class="card-body">
-                  <span class="empty-state">The final send-off — nothing picked yet</span>
+                  <div class="song-entry">
+                    <span class="song-title">Stole the Show</span>
+                    <span class="song-artist">Kygo feat. Parson James</span>
+                    <span class="song-note">The closing-curtain song — literal last song of the night</span>
+                  </div>
                 </div>
               </div>
 
@@ -813,13 +867,15 @@
         <div class="collapse-body">
           <div class="collapse-inner" style="display:flex; flex-direction:column; gap:0.6rem;">
             <p style="font-size:0.82rem; color:var(--text-dim); line-height:1.7;">
-              · <strong style="color:var(--cream);">Vibe:</strong> 2010s primary, 80s/90s mixed in. Instrumental pop covers for ceremony &amp; cocktail hour.<br>
-              · <strong style="color:var(--cream);">Reception arc:</strong> Crowd-pleasers early, classic rock mid, burn it down late night (post 9pm).<br>
-              · <strong style="color:var(--cream);">Guest requests:</strong> Preferably submitted the day before.<br>
-              · <strong style="color:var(--cream);">MC:</strong> Grant handles all announcements.<br>
-              · <strong style="color:var(--cream);">Mic:</strong> 1 mic with stand for speeches &amp; ceremony.<br>
-              · <strong style="color:var(--cream);">Song rate:</strong> ~30 songs/hour.<br>
-              · <strong style="color:var(--cream);">Full playlist deadline:</strong> Week of June 15.
+              · <strong style="color:var(--foam);">Vibe:</strong> 2010s primary, 80s/90s mixed in. Instrumental pop covers for ceremony &amp; cocktail hour.<br>
+              · <strong style="color:var(--foam);">Dinner set:</strong> Chill melodic electronic — Flume / Mura Masa / ford. energy. Seed tracks: Take a Chance · The Unknown · What If I Go?<br>
+              · <strong style="color:var(--foam);">Party-set ammo:</strong> What A Life · Restless Bones · Tennis Court (Flume Remix) · Voices · Happier · Misery (Kaivon &amp; WISNER) · BLUE — save BLUE for late night.<br>
+              · <strong style="color:var(--foam);">Reception arc:</strong> Crowd-pleasers early, classic rock mid, burn it down late night (post 9pm).<br>
+              · <strong style="color:var(--foam);">Guest requests:</strong> Preferably submitted the day before.<br>
+              · <strong style="color:var(--foam);">MC:</strong> Grant handles all announcements.<br>
+              · <strong style="color:var(--foam);">Mic:</strong> 1 mic with stand for speeches &amp; ceremony.<br>
+              · <strong style="color:var(--foam);">Song rate:</strong> ~30 songs/hour.<br>
+              · <strong style="color:var(--foam);">Full playlist deadline:</strong> Week of June 15.
             </p>
           </div>
         </div>
@@ -1087,7 +1143,7 @@
         <div class="timeline-time"></div>
         <div class="timeline-card highlight">
           <div class="timeline-event">Recessional</div>
-          <div class="timeline-tbd">♪ Song TBD</div>
+          <div class="timeline-tbd">♪ Final pick in progress — high-energy euphoric</div>
         </div>
       </div>
 
@@ -1144,7 +1200,7 @@
         <div class="timeline-time"></div>
         <div class="timeline-card highlight">
           <div class="timeline-event">Bride &amp; Groom grand entrance</div>
-          <div class="timeline-song">You &amp; Me — Flume Remix<span class="timeline-song-artist">— Disclosure · Flume (confirm version)</span></div>
+          <div class="timeline-song">High You Are — Branchez Remix<span class="timeline-song-artist">— What So Not · Branchez</span></div>
         </div>
       </div>
       <div class="timeline-item">
@@ -1152,7 +1208,7 @@
         <div class="timeline-card">
           <div class="timeline-event">Dinner — buffet</div>
           <div class="timeline-detail">Tables released by DJ or caterer · Caterer maintains buffet</div>
-          <div class="timeline-tbd">♪ Background music — direction TBD</div>
+          <div class="timeline-song">Chill melodic electronic<span class="timeline-song-artist">— Flume · Mura Masa · ford. energy · Grant curates</span></div>
         </div>
       </div>
       <div class="timeline-item">
@@ -1248,7 +1304,7 @@
         <div class="timeline-time">10:50 PM</div>
         <div class="timeline-card highlight">
           <div class="timeline-event">Last dance</div>
-          <div class="timeline-tbd">♪ Song TBD</div>
+          <div class="timeline-song">Stole the Show<span class="timeline-song-artist">— Kygo feat. Parson James</span></div>
         </div>
       </div>
       <div class="timeline-item">
@@ -1322,8 +1378,8 @@
     </div>
   </div>
 
-
-    <em>August 29, 2026</em> · Stephanie &amp; Stephen · River Crab, St. Clair MI
+  <footer>
+    <em>August 29, 2026</em> · Stephanie &amp; Stephen · River Crab, St. Clair MI · <span id="crab" title="?" onclick="releaseCrab()">🦀</span>
   </footer>
 
   <script>
@@ -1339,6 +1395,38 @@
       const section = btn.closest('.collapse-section');
       section.classList.toggle('open');
     }
+
+    // ── water eggs ──
+    // Tap the hero: the river ripples.
+    document.querySelectorAll('.hero, .schedule-hero, .equip-hero').forEach(h => {
+      h.addEventListener('pointerdown', e => {
+        for (const cls of ['', 'r2']) {
+          const r = document.createElement('div');
+          r.className = ('ripple ' + cls).trim();
+          r.style.left = e.clientX + 'px';
+          r.style.top = e.clientY + 'px';
+          document.body.appendChild(r);
+          r.addEventListener('animationend', () => r.remove());
+        }
+      });
+    });
+
+    // The resident crab scuttles on request.
+    function releaseCrab() {
+      if (document.querySelector('.crab-runner')) return;
+      const c = document.createElement('div');
+      c.className = 'crab-runner';
+      c.textContent = '🦀';
+      document.body.appendChild(c);
+      c.addEventListener('animationend', () => c.remove());
+    }
+
+    console.log(`
+   (\\/) (\\/)
+    (o  ..  o)     see you on the river
+   <(  \\__/  )>   08 · 29 · 26
+      "    "
+`);
   </script>
 
 </body>
