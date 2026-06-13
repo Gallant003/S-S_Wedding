@@ -71,6 +71,37 @@
     }
     .nav-links a:hover, .nav-links a.active { color: var(--glass); }
 
+    /* ── scroll progress (wayfinding) ── */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0;
+      background: linear-gradient(90deg, var(--tide), var(--current), var(--dusk));
+      z-index: 200; transition: width 0.1s linear;
+    }
+    /* ── nav page indicator ── */
+    .nav-here {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--tide); margin-left: 0.6rem;
+    }
+
+    /* ── day→night sky: fixed layer, opacity driven by scroll on schedule ── */
+    #sky {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      opacity: 0; transition: opacity 0.4s ease;
+    }
+    #sky.on { opacity: 1; }
+    #sky .layer {
+      position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease;
+    }
+    /* dawn */
+    #sky .dawn  { background: radial-gradient(ellipse 100% 70% at 50% 0%, #2a3a44 0%, #14242c 55%, #0a161c 100%); }
+    /* midday-gold */
+    #sky .day   { background: radial-gradient(ellipse 90% 60% at 50% 5%, #3a4a44 0%, #1a2e2c 50%, #0c1a1e 100%); }
+    /* dusk (home palette) */
+    #sky .dusk  { background: radial-gradient(ellipse 90% 55% at 30% 0%, rgba(28,74,84,0.7) 0%, #08141a 60%); }
+    /* night */
+    #sky .night { background: radial-gradient(ellipse 80% 50% at 70% 0%, #0a1820 0%, #050c10 70%, #03080a 100%); }
+
     /* ── PAGES ── */
     .page { display: none; position: relative; z-index: 1; }
     .page.active { display: block; }
@@ -446,9 +477,13 @@
     }
 
     .schedule-section-header {
-      font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase;
+      font-size: 0.82rem; letter-spacing: 0.24em; text-transform: uppercase;
       color: var(--tide); margin: 2.5rem 0 1rem;
       display: flex; align-items: center; gap: 1rem;
+      position: sticky; top: 56px; z-index: 50;
+      padding: 0.6rem 0;
+      background: linear-gradient(180deg, rgba(8,20,26,0.85) 40%, transparent);
+      backdrop-filter: blur(3px);
     }
     .schedule-section-header::after {
       content: ''; flex: 1; height: 1px;
@@ -558,8 +593,16 @@
 </head>
 <body>
 
+  <div id="scroll-progress"></div>
+  <div id="sky" aria-hidden="true">
+    <div class="layer dawn"></div>
+    <div class="layer day"></div>
+    <div class="layer dusk"></div>
+    <div class="layer night"></div>
+  </div>
+
   <nav>
-    <div class="nav-logo">Au<span>gust</span></div>
+    <div class="nav-logo">Au<span>gust</span><span class="nav-here" id="nav-here">Music</span></div>
     <ul class="nav-links">
       <li><a href="#" class="active" onclick="showPage('music', this)">Music</a></li>
       <li><a href="#" onclick="showPage('equipment', this)">Equipment</a></li>
@@ -959,19 +1002,19 @@
     <div class="equip-hero">
       <p class="hero-eyebrow" style="text-align:left; margin-bottom:0.75rem;">DJ Equipment</p>
       <h2>Grant's Gear List</h2>
-      <p>Specs from Grant. Source everything near St. Clair, MI — he's driving from Illinois with Shaun. Budget ~$400.</p>
+      <p>Specs from Grant. Source everything near St. Clair, MI — he's driving from Illinois with Shaun. Budget ~$600 — ProAAL quote includes Friday delivery, setup &amp; teardown.</p>
     </div>
 
     <div class="deadline-block">
       <div>
         <div class="deadline-label">Rental deadline</div>
-        <div class="deadline-value">ASAP — book before June 15</div>
-        <div class="deadline-sub">Confirm availability before the playlist deadline</div>
+        <div class="deadline-value">ProAAL — awaiting 8/28 confirm</div>
+        <div class="deadline-sub">EV/QSC house · store visit planned to spec lighting</div>
       </div>
       <div>
-        <div class="deadline-label">Potential vendor</div>
-        <div class="deadline-value">dj-eddie.com</div>
-        <div class="deadline-sub">dj-eddie.com/equipment_rental.htm</div>
+        <div class="deadline-label">Rental vendor</div>
+        <div class="deadline-value">ProAAL (lead)</div>
+        <div class="deadline-sub">sales@proaal.com · Fallback: Motor Town Sound — Josh Ford, 248-534-6772</div>
       </div>
     </div>
 
@@ -1355,8 +1398,8 @@
       <div class="timeline-item">
         <div class="timeline-time">9:45 PM</div>
         <div class="timeline-card">
-          <div class="timeline-event">Late night snack</div>
-          <div class="timeline-tbd">Details TBD</div>
+          <div class="timeline-event">Late night snack — Buscemi's pizza</div>
+          <div class="timeline-note">Order week-of</div>
         </div>
       </div>
       <div class="timeline-item">
@@ -1401,7 +1444,8 @@
         </div>
         <div class="vendor-card">
           <div class="vendor-role">Day-of Coordinators</div>
-          <div class="vendor-name">Beautiful Crazy</div>
+          <div class="vendor-name">Beautiful Crazy — Connie</div>
+          <div class="vendor-contact">810-643-6834</div>
           <div class="vendor-contact">810-643-6834</div>
         </div>
         <div class="vendor-card">
@@ -1417,16 +1461,16 @@
         <div class="vendor-card">
           <div class="vendor-role">Photographer / Videographer</div>
           <div class="vendor-name">FairyTale Productions</div>
-          <div class="vendor-contact">Contact TBD</div>
+          <div class="vendor-contact">help@fairytaleproductions.net</div>
         </div>
         <div class="vendor-card">
           <div class="vendor-role">DJ</div>
           <div class="vendor-name">Grant Morin</div>
-          <div class="vendor-contact">Contact TBD</div>
+          <div class="vendor-contact">College friend · driving from IL with Shaun</div>
         </div>
         <div class="vendor-card">
           <div class="vendor-role">Bartender</div>
-          <div class="vendor-name">Ron Bitto</div>
+          <div class="vendor-name">Ron Bitto + partner</div>
           <div class="vendor-contact">586-945-7016</div>
         </div>
         <div class="vendor-card">
@@ -1442,7 +1486,22 @@
         <div class="vendor-card">
           <div class="vendor-role">Photobooth</div>
           <div class="vendor-name">Kruu</div>
-          <div class="vendor-contact">Online — needs setup</div>
+          <div class="vendor-contact">Paid in full · conf U58D897-FB</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Florist</div>
+          <div class="vendor-name">Flower &amp; Oak</div>
+          <div class="vendor-contact">Beth Rigali · (330) 285-2334</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Guest Hotel Block</div>
+          <div class="vendor-name">Holiday Inn Port Huron</div>
+          <div class="vendor-contact">Gallant block · book by July 28</div>
+        </div>
+        <div class="vendor-card">
+          <div class="vendor-role">Rehearsal Dinner / Wedding Party Rooms</div>
+          <div class="vendor-name">Blue Water Inn</div>
+          <div class="vendor-contact">Conf 68408 / 68418 / 68417 · party rooms by June 28</div>
         </div>
       </div>
 
@@ -1454,13 +1513,52 @@
   </footer>
 
   <script>
+    const PAGE_NAMES = { music: 'Music', equipment: 'Equipment', schedule: 'Schedule' };
+    let currentPage = 'music';
+
     function showPage(page, link) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
       document.getElementById('page-' + page).classList.add('active');
       if (link) link.classList.add('active');
+      currentPage = page;
+      document.getElementById('nav-here').textContent = PAGE_NAMES[page];
+      document.getElementById('sky').classList.toggle('on', page === 'schedule');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      onScroll();
     }
+
+    // ── wayfinding + day→night choreography ──
+    const sky = document.getElementById('sky');
+    const layers = {
+      dawn:  sky.querySelector('.dawn'),
+      day:   sky.querySelector('.day'),
+      dusk:  sky.querySelector('.dusk'),
+      night: sky.querySelector('.night'),
+    };
+    const bar = document.getElementById('scroll-progress');
+
+    function setSky(p) {
+      // p: 0 (rehearsal morning) → 1 (midnight). Crossfade through four skies.
+      const stops = ['dawn', 'day', 'dusk', 'night'];
+      const seg = Math.min(2.999, p * 3);          // 0..3 across 4 stops
+      const i = Math.floor(seg);
+      const f = seg - i;                            // blend within segment
+      stops.forEach(s => layers[s].style.opacity = 0);
+      layers[stops[i]].style.opacity = 1 - f;
+      layers[stops[i + 1]].style.opacity = f;
+    }
+
+    function onScroll() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const p = max > 0 ? h.scrollTop / max : 0;
+      bar.style.width = (p * 100) + '%';
+      if (currentPage === 'schedule') setSky(p);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
 
     function toggle(btn) {
       const section = btn.closest('.collapse-section');
