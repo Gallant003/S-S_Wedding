@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>August</title>
+  <meta name="format-detection" content="telephone=no" />
+  <title>Stephanie &amp; Stephen · August 29, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -51,25 +52,24 @@
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: center;
       padding: 1rem 2.5rem;
       background: rgba(8,20,26,0.86);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(103,214,197,0.15);
     }
-    .nav-logo {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.65rem; font-weight: 300; font-style: italic;
-      color: var(--glass); letter-spacing: 0.04em;
-    }
-    .nav-logo span { font-style: normal; font-weight: 600; color: var(--current); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       color: var(--text-dim); text-decoration: none;
       font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase;
       transition: color 0.2s;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--glass); }
+    .nav-links a:hover { color: var(--glass); }
+    .nav-links a.active { color: var(--glass); font-weight: 500; }
+    .nav-links a.active::after {
+      content: ''; display: block; height: 1.5px; margin-top: 3px;
+      background: var(--current); border-radius: 1px;
+    }
 
     /* ── scroll progress (wayfinding) ── */
     #scroll-progress {
@@ -77,13 +77,6 @@
       background: linear-gradient(90deg, var(--tide), var(--current), var(--dusk));
       z-index: 200; transition: width 0.1s linear;
     }
-    /* ── nav page indicator ── */
-    .nav-here {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--tide); margin-left: 0.6rem;
-    }
-
     /* ── day→night sky: fixed layer, opacity driven by scroll on schedule ── */
     #sky {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -478,12 +471,15 @@
 
     .schedule-section-header {
       font-size: 0.82rem; letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--tide); margin: 2.5rem 0 1rem;
+      color: var(--glass); margin: 2.5rem 0 1rem;
       display: flex; align-items: center; gap: 1rem;
-      position: sticky; top: 56px; z-index: 50;
-      padding: 0.6rem 0;
-      background: linear-gradient(180deg, rgba(8,20,26,0.85) 40%, transparent);
-      backdrop-filter: blur(3px);
+      position: sticky; top: 54px; z-index: 50;
+      padding: 0.75rem 0 0.55rem;
+    }
+    .schedule-section-header::before {
+      content: ''; position: absolute; inset: -0.5rem -2rem;
+      background: radial-gradient(ellipse 70% 140% at 0% 50%, rgba(8,20,26,0.92) 0%, rgba(8,20,26,0.6) 45%, transparent 80%);
+      z-index: -1; pointer-events: none;
     }
     .schedule-section-header::after {
       content: ''; flex: 1; height: 1px;
@@ -565,6 +561,11 @@
     .vendor-role { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tide); margin-bottom: 0.25rem; }
     .vendor-name { font-family: 'Instrument Serif', serif; font-size: 1.1rem; color: var(--foam); }
     .vendor-contact { font-size: 0.88rem; color: var(--text-dim); margin-top: 0.15rem; }
+    /* neutralize iOS auto-linkification of phone numbers / addresses */
+    .vendor-contact a, .timeline-detail a,
+    a[href^="tel:"], a[href^="mailto:"] {
+      color: inherit !important; text-decoration: none !important;
+    }
 
     @media (max-width: 600px) {
       .schedule-hero, .schedule-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -602,7 +603,6 @@
   </div>
 
   <nav>
-    <div class="nav-logo">Au<span>gust</span><span class="nav-here" id="nav-here">Music</span></div>
     <ul class="nav-links">
       <li><a href="#" class="active" onclick="showPage('music', this)">Music</a></li>
       <li><a href="#" onclick="showPage('equipment', this)">Equipment</a></li>
@@ -1446,7 +1446,6 @@
           <div class="vendor-role">Day-of Coordinators</div>
           <div class="vendor-name">Beautiful Crazy — Connie</div>
           <div class="vendor-contact">810-643-6834</div>
-          <div class="vendor-contact">810-643-6834</div>
         </div>
         <div class="vendor-card">
           <div class="vendor-role">Bathroom Rentals</div>
@@ -1513,7 +1512,6 @@
   </footer>
 
   <script>
-    const PAGE_NAMES = { music: 'Music', equipment: 'Equipment', schedule: 'Schedule' };
     let currentPage = 'music';
 
     function showPage(page, link) {
@@ -1522,7 +1520,6 @@
       document.getElementById('page-' + page).classList.add('active');
       if (link) link.classList.add('active');
       currentPage = page;
-      document.getElementById('nav-here').textContent = PAGE_NAMES[page];
       document.getElementById('sky').classList.toggle('on', page === 'schedule');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       onScroll();
