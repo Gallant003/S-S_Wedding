@@ -80,20 +80,23 @@
     /* ── day→night sky: fixed layer, opacity driven by scroll on schedule ── */
     #sky {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      opacity: 0; transition: opacity 0.4s ease;
+      opacity: 0; transition: opacity 0.5s ease;
     }
     #sky.on { opacity: 1; }
     #sky .layer {
-      position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease;
+      position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease;
     }
-    /* dawn */
-    #sky .dawn  { background: radial-gradient(ellipse 100% 70% at 50% 0%, #2a3a44 0%, #14242c 55%, #0a161c 100%); }
-    /* midday-gold */
-    #sky .day   { background: radial-gradient(ellipse 90% 60% at 50% 5%, #3a4a44 0%, #1a2e2c 50%, #0c1a1e 100%); }
-    /* dusk (home palette) */
-    #sky .dusk  { background: radial-gradient(ellipse 90% 55% at 30% 0%, rgba(28,74,84,0.7) 0%, #08141a 60%); }
-    /* night */
-    #sky .night { background: radial-gradient(ellipse 80% 50% at 70% 0%, #0a1820 0%, #050c10 70%, #03080a 100%); }
+    /* dawn — pale, cool, soft light rising */
+    #sky .dawn  { background: linear-gradient(170deg, #3d5a6b 0%, #2a4252 35%, #16242e 75%, #0c1820 100%); }
+    /* midday — warmer, brighter, gold creeping in */
+    #sky .day   { background: linear-gradient(170deg, #46685f 0%, #2f5048 30%, #2a3e3a 60%, #16282a 100%); }
+    /* dusk — the sunset: coral & teal, home palette */
+    #sky .dusk  { background: linear-gradient(170deg, #5a4a52 0%, #355058 30%, #1c3a42 60%, #0a1820 100%); }
+    /* night — deep, near-black, last dance */
+    #sky .night { background: linear-gradient(170deg, #14222c 0%, #0a141c 45%, #050c12 75%, #02080c 100%); }
+
+    /* on the schedule page, the sky replaces the ambient glow so the transition reads clearly */
+    body.schedule-active::before { opacity: 0; transition: opacity 0.5s ease; }
 
     /* ── PAGES ── */
     .page { display: none; position: relative; z-index: 1; }
@@ -473,13 +476,6 @@
       font-size: 0.82rem; letter-spacing: 0.24em; text-transform: uppercase;
       color: var(--glass); margin: 2.5rem 0 1rem;
       display: flex; align-items: center; gap: 1rem;
-      position: sticky; top: 54px; z-index: 50;
-      padding: 0.75rem 0 0.55rem;
-    }
-    .schedule-section-header::before {
-      content: ''; position: absolute; inset: -0.5rem -2rem;
-      background: radial-gradient(ellipse 70% 140% at 0% 50%, rgba(8,20,26,0.92) 0%, rgba(8,20,26,0.6) 45%, transparent 80%);
-      z-index: -1; pointer-events: none;
     }
     .schedule-section-header::after {
       content: ''; flex: 1; height: 1px;
@@ -627,10 +623,6 @@
           <path class="w2" d="M0,8 C10,12 20,4 30,8 C40,12 50,4 60,8 C70,12 80,4 90,8 C100,12 110,4 120,8" fill="none" stroke-width="1.1" stroke-linecap="round"/>
           <path class="w3" d="M0,10 C12,6 24,14 36,10 C48,6 60,14 72,10 C84,6 96,14 108,10 C114,8 118,12 120,10" fill="none" stroke-width="1.1" stroke-linecap="round"/>
         </svg>
-      </div>
-      <div class="deadline-badge">
-        <span class="dot"></span>
-        Playlist deadline · Week of June 15
       </div>
     </div>
 
@@ -1521,6 +1513,7 @@
       if (link) link.classList.add('active');
       currentPage = page;
       document.getElementById('sky').classList.toggle('on', page === 'schedule');
+      document.body.classList.toggle('schedule-active', page === 'schedule');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       onScroll();
     }
