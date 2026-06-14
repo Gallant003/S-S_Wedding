@@ -20,8 +20,8 @@
       --magenta:     #FF4DC8;   /* explicit magenta token */
       --cyan:        #18E0FF;   /* explicit cyan token */
       --foam:        #F4F8FC;   /* near-white */
-      --river:       #05060A;   /* booth black */
-      --depth:       #0C0E16;   /* card surface — charcoal */
+      --river:       #11141C;   /* dark slate — softer than the void */
+      --depth:       #191D28;   /* card surface — lifted charcoal */
       --text-main:   #E8ECF4;
       --text-dim:    #97A0B5;
       --text-faint:  #5A6175;
@@ -44,9 +44,9 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 50% at 12% 0%, rgba(24,224,255,0.10) 0%, transparent 60%),
-        radial-gradient(ellipse 75% 55% at 88% 12%, rgba(255,77,200,0.09) 0%, transparent 58%),
-        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(24,224,255,0.05) 0%, transparent 62%);
+        radial-gradient(ellipse 80% 50% at 12% 0%, rgba(24,224,255,0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 75% 55% at 88% 12%, rgba(255,77,200,0.12) 0%, transparent 58%),
+        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(24,224,255,0.07) 0%, transparent 62%);
       pointer-events: none;
       z-index: 0;
     }
@@ -98,13 +98,13 @@
       position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease;
     }
     /* dawn — room lights, cool and dim */
-    #sky .dawn  { background: linear-gradient(170deg, #10131f 0%, #0c0e16 45%, #07080e 100%); }
+    #sky .dawn  { background: linear-gradient(170deg, #1a1f2b 0%, #161a24 45%, #11141c 100%); }
     /* day — cyan wash creeping in */
-    #sky .day   { background: linear-gradient(170deg, #0c1a26 0%, #0a1420 40%, #06080f 100%); }
+    #sky .day   { background: linear-gradient(170deg, #16242f 0%, #141d28 40%, #10151d 100%); }
     /* dusk — magenta rig glow, peak energy */
-    #sky .dusk  { background: linear-gradient(170deg, #1a0e1e 0%, #140a18 40%, #08060e 100%); }
-    /* night — blackout, last dance */
-    #sky .night { background: linear-gradient(170deg, #0a0c14 0%, #05060a 50%, #020308 100%); }
+    #sky .dusk  { background: linear-gradient(170deg, #241526 0%, #1d1220 40%, #130d18 100%); }
+    /* night — deep, last dance */
+    #sky .night { background: linear-gradient(170deg, #12161e 0%, #0d1018 50%, #090b12 100%); }
 
     /* on the schedule page, the sky replaces the ambient glow so the transition reads clearly */
     body.schedule-active::before { opacity: 0; transition: opacity 0.5s ease; }
@@ -493,6 +493,19 @@
     .grant-line.call::before { content: '○'; color: var(--dusk); }
     .grant-line.logi::before { content: '·'; color: var(--text-faint); font-weight: 700; }
     .grant-line strong { color: var(--foam); font-weight: 500; }
+    .grant-songs {
+      list-style: none; margin: 0.4rem 0 0.9rem 1.4rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .grant-songs li {
+      font-size: 0.84rem; color: var(--text-dim); line-height: 1.5;
+      padding-left: 1rem; position: relative;
+    }
+    .grant-songs li::before {
+      content: '▸'; position: absolute; left: 0; color: var(--magenta); font-size: 0.7rem; top: 0.15rem;
+    }
+    .grant-songs li strong { color: var(--foam); font-weight: 500; }
+    .grant-songs li .song-meta { color: var(--text-faint); }
 
     /* ── PLAYLIST EMBEDS INSIDE COLLAPSE ── */
     .playlist-grid-inner {
@@ -1128,14 +1141,40 @@
 
             <div class="grant-tier-head call">○ Grant's Call — your floor, your read</div>
             <p class="grant-line call"><strong>You're the final decider on the dance floor.</strong> The tracks below are options if they fit — but lean on your own instincts and pull in your house picks. We trust your read of the room over any list.</p>
-            <p class="grant-line call"><strong>Party-set ammo (play if it fits):</strong> What A Life · Restless Bones · Tennis Court (Flume Remix) · Voices · Happier · Misery (Kaivon &amp; WISNER) · Fancy $hit (CID) · BLUE — save BLUE for late night.</p>
-            <p class="grant-line call"><strong>Just fun, if the moment's right:</strong> Sound Of The Underground (Zeds Dead &amp; Urbandawn) — the groom loves the 3:00 moment, let it ride loud if you play it · Stoopid (Bandlez) — late-night, only the bass heads left · Never Going Back Again (Fleetwood Mac) — gentle, dinner or the classic-rock stretch, not the dance floor.</p>
+            <p class="grant-line call"><strong>Party-set ammo</strong> — play if it fits:</p>
+            <ul class="grant-songs">
+              <li>What A Life</li>
+              <li>Restless Bones</li>
+              <li>Tennis Court (Flume Remix)</li>
+              <li>Voices</li>
+              <li>Happier</li>
+              <li>Misery <span class="song-meta">— Kaivon &amp; WISNER</span></li>
+              <li>Fancy $hit <span class="song-meta">— CID</span></li>
+              <li>BLUE <span class="song-meta">— save for late night</span></li>
+            </ul>
+            <p class="grant-line call"><strong>Just fun</strong> — if the moment's right:</p>
+            <ul class="grant-songs">
+              <li>Sound Of The Underground <span class="song-meta">— Zeds Dead &amp; Urbandawn · groom loves the 3:00 moment, let it ride loud</span></li>
+              <li>Stoopid <span class="song-meta">— Bandlez · late-night, only the bass heads left</span></li>
+              <li>Never Going Back Again <span class="song-meta">— Fleetwood Mac · gentle, dinner or classic-rock stretch, not the dance floor</span></li>
+            </ul>
             <p class="grant-line call"><strong>Reception arc:</strong> Crowd-pleasers early, classic rock mid, burn it down late night (post 9 PM).</p>
-            <p class="grant-line call"><strong>The "Stephen" name-drops (optional fun):</strong> Hey Stephen (Taylor's Version) — Taylor Swift · Stephen — Kesha. Drop either if the moment's right. <em>From Stephanie:</em> grab the clip of Kesha singing "Stephen" and do something fun with it. 😜</p>
+            <p class="grant-line call"><strong>The "Stephen" name-drops</strong> — optional fun, drop either if the moment's right:</p>
+            <ul class="grant-songs">
+              <li>Hey Stephen (Taylor's Version) <span class="song-meta">— Taylor Swift</span></li>
+              <li>Stephen <span class="song-meta">— Kesha · From Stephanie: grab the clip of her singing "Stephen" and do something fun with it 😜</span></li>
+            </ul>
 
             <div class="grant-tier-head call" style="color:var(--tide);">· Logistics</div>
             <p class="grant-line logi"><strong>Vibe:</strong> 2010s primary, 80s/90s mixed in. Instrumental pop covers for ceremony &amp; cocktail hour.</p>
-            <p class="grant-line logi"><strong>Dinner set:</strong> Chill melodic electronic — Flume / Mura Masa / ford. energy. Seeds: Take a Chance · The Unknown · What If I Go? · SKY SKY 1.3 (Flume) · Highest Building (Flume, Oklou).</p>
+            <p class="grant-line logi"><strong>Dinner set:</strong> Chill melodic electronic — Flume / Mura Masa / ford. energy. Seeds:</p>
+            <ul class="grant-songs">
+              <li>Take a Chance</li>
+              <li>The Unknown</li>
+              <li>What If I Go?</li>
+              <li>SKY SKY 1.3 <span class="song-meta">— Flume</span></li>
+              <li>Highest Building <span class="song-meta">— Flume, Oklou</span></li>
+            </ul>
             <p class="grant-line logi"><strong>Guest requests:</strong> Preferably submitted the day before.</p>
             <p class="grant-line logi"><strong>MC:</strong> Grant handles all announcements.</p>
             <p class="grant-line logi"><strong>Mic:</strong> 1 mic with stand for speeches &amp; ceremony.</p>
@@ -1155,7 +1194,7 @@
     <div class="equip-hero">
       <p class="hero-eyebrow" style="text-align:left; margin-bottom:0.75rem;">DJ Equipment</p>
       <h2>Grant's Gear List</h2>
-      <p>Specs from Grant. Source everything near St. Clair, MI — he's driving from Illinois with Shaun. Speakers are Stephen's rental; lighting is likely Grant's. See "The Deal" below for the money split.</p>
+      <p>Specs from Grant. Source everything near St. Clair, MI — he's driving from Illinois with Shaun. Speakers are Stephen's rental; lighting is being sorted with Grant. See "The Deal" below for the money split.</p>
     </div>
 
     <div class="deadline-block" style="flex-direction:column; align-items:stretch; gap:0.9rem;">
@@ -1167,13 +1206,13 @@
         <div style="flex:1; min-width:220px;">
           <div class="deadline-label">The $1k pot</div>
           <div class="deadline-sub" style="color:var(--text-dim); line-height:1.6;">
-            Stephen gives Grant $1,000. Grant rents gear from it &amp; keeps the remainder. <strong style="color:var(--crab);">⚠ Confirming with Grant:</strong> now that Stephen is renting the speakers separately and Grant has lighting mostly handled, what does the $1k still cover — and is it still the right number?
+            Stephen gives Grant $1,000. Grant rents gear from it &amp; keeps the remainder. <strong style="color:var(--crab);">⚠ Confirming with Grant:</strong> now that Stephen is renting the speakers separately and Grant owns a Gigbar, what does the $1k still cover — and is it still the right number?
           </div>
         </div>
         <div style="flex:1; min-width:220px;">
           <div class="deadline-label">The hotel</div>
           <div class="deadline-sub" style="color:var(--text-dim); line-height:1.6;">
-            Book a <strong style="color:var(--glass);">double queen</strong>. Shaun stays too &amp; pays half — Stephen's cost roughly halves. Confirm Shaun's half in writing.
+            Book a <strong style="color:var(--glass);">double queen</strong>. Shaun stays too &amp; pays half. Confirm Shaun's half in writing.
           </div>
         </div>
       </div>
@@ -1241,7 +1280,7 @@
           <div class="equip-item-sub">Grant owns 1 Gigbar &amp; is considering renting a 2nd when he drives over with Shaun.</div>
         </div>
         <div class="equip-brands"><span class="equip-tag tag-preferred">✓ Chauvet Gigbar Move ILS</span></div>
-        <div class="equip-note" style="color:var(--crab);">⚠ TBD — confirm with Grant whether a 2nd Gigbar is being rented, and who pays for it. Likely off Stephen's plate.</div>
+        <div class="equip-note" style="color:var(--crab);">⚠ TBD — confirm with Grant whether a 2nd Gigbar is being rented, and who pays for it.</div>
       </div>
 
       <div class="equip-card">
