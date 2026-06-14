@@ -127,6 +127,12 @@
       font-family: 'Instrument Serif', serif;
       font-size: 1.25rem; color: var(--text-dim); letter-spacing: 0.15em;
     }
+    .hero-dj {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-faint); margin-top: 1.2rem;
+    }
+    .hero-dj strong { color: var(--cyan); font-weight: 500; }
     /* ── monogram: one name forks into two ── */
     .monogram {
       display: inline-flex; align-items: center; justify-content: center;
@@ -711,6 +717,7 @@
       </div>
       <p class="hero-date">August 29, 2026 · Jasak/Dale Farm · Saint Clair, Michigan</p>
       <div class="eq-divider" aria-hidden="true" id="hero-eq"></div>
+      <p class="hero-dj">On the decks: <strong>DJ Grant Morin</strong> · the booth brief below</p>
     </div>
 
     <div class="sections-wrap">
@@ -722,7 +729,7 @@
             <span class="collapse-icon">[ 01 ]</span>
             <span class="collapse-title">Song Tracker</span>
           </div>
-          <span class="collapse-meta">17 segments &nbsp; ▾</span>
+          <span class="collapse-meta">18 segments &nbsp; ▾</span>
         </button>
         <div class="collapse-body">
           <div class="collapse-inner">
@@ -730,9 +737,8 @@
             <div class="tbd-alert">
               <div class="tbd-alert-head"><span class="dot"></span>Still open — needs a decision</div>
               <ul>
-                <li><strong>Groom's Processional</strong> — Eagles or Bob Seger. Personal pick with Dad; confirm the track.</li>
-                <li><strong>Mother / Groom Dance</strong> — song TBD with step-mom.</li>
-                <li><strong>Mother / Bride Dance</strong> — confirm whether this is happening at all, then pick a song.</li>
+                <li><strong>Groom's Processional</strong> — which Bob Seger song. Dad's favorite; confirm the track.</li>
+                <li><strong>Mother / Groom Dance</strong> — song TBD with Mom.</li>
               </ul>
             </div>
 
@@ -758,12 +764,12 @@
                   <span class="card-title">Groom's Processional</span>
                   <span class="card-time">4:00 PM</span>
                 </div>
-                <div class="card-status"><span class="status-pill status-maybe">Strong Maybe</span></div>
+                <div class="card-status"><span class="status-pill status-maybe">Bob Seger — song TBD</span></div>
                 <div class="card-body">
                   <div class="song-entry">
-                    <span class="song-title">TBD — Eagles or Bob Seger</span>
-                    <span class="song-artist">Walking in with Dad &amp; Step-Mom</span>
-                    <span class="song-note">Personal to Stephen &amp; his dad · confirm song soon</span>
+                    <span class="song-title">TBD — a Bob Seger song</span>
+                    <span class="song-artist">Dad's favorite · track still being chosen</span>
+                    <span class="song-note">Dad walks Stephen in, then steps up to officiate · confirm the Seger track</span>
                   </div>
                 </div>
               </div>
@@ -917,7 +923,7 @@
                 </div>
                 <div class="card-status"><span class="status-pill status-empty">Needs a song</span></div>
                 <div class="card-body">
-                  <span class="empty-state">With step-mom · song TBD with her</span>
+                  <span class="empty-state">With Mom · song TBD</span>
                 </div>
               </div>
 
@@ -926,9 +932,28 @@
                   <span class="card-title">Mother / Bride Dance</span>
                   <span class="card-time">7:10 PM</span>
                 </div>
-                <div class="card-status"><span class="status-pill status-empty">Confirm if happening</span></div>
+                <div class="card-status"><span class="status-pill status-locked">✓ Locked</span></div>
                 <div class="card-body">
-                  <span class="empty-state">Listed in coordinator doc — confirm with Stephanie</span>
+                  <div class="song-entry">
+                    <span class="song-title">Mom</span>
+                    <span class="song-artist">Meghan Trainor feat. Kelli Trainor</span>
+                    <span class="song-note">Stephanie &amp; her mom</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="segment-card">
+                <div class="card-header">
+                  <span class="card-title">Sisters' Dance</span>
+                  <span class="card-time">7:12 PM</span>
+                </div>
+                <div class="card-status"><span class="status-pill status-locked">✓ Locked</span></div>
+                <div class="card-body">
+                  <div class="song-entry">
+                    <span class="song-title">Jenna's Song</span>
+                    <span class="song-artist">Rival Summers</span>
+                    <span class="song-note">Sisters' dance with niece · then roll into open dancing</span>
+                  </div>
                 </div>
               </div>
 
@@ -973,6 +998,16 @@
                     <span class="song-title">2010s + 80s/90s mix</span>
                     <span class="song-artist">S&amp;S Reception playlist · Wedding Core Songs</span>
                     <span class="song-note">Arc: crowd-pleasers early → high energy late night</span>
+                  </div>
+                  <div class="song-entry">
+                    <span class="song-title">Pump Up The Jam</span>
+                    <span class="song-artist">Technotronic</span>
+                    <span class="song-note">Stephanie's pick · play early — get the older crowd moving before they fade</span>
+                  </div>
+                  <div class="song-entry">
+                    <span class="song-title">Lose Control</span>
+                    <span class="song-artist">Teddy Swims</span>
+                    <span class="song-note">Stephanie's pick · ~9:30 suggested · big build, great for the lights — Grant's call on timing</span>
                   </div>
                 </div>
               </div>
@@ -1065,8 +1100,6 @@
               <li>Cha Cha Slide</li>
               <li>Cupid Shuffle</li>
               <li>Cotton Eye Joe</li>
-              <li>Macarena</li>
-              <li>YMCA</li>
               <li>Any line dance</li>
             </ul>
           </div>
@@ -1086,10 +1119,11 @@
           <div class="collapse-inner">
 
             <div class="grant-tier-head must">✓ Must-Play — these matter</div>
-            <p class="grant-line must"><strong>The Dad Block</strong> — classic-rock stretch (~8:30–9 PM): Night Moves → Main Street → Hotel California, back to back. For the groom's father. No announcement — just let it land.</p>
+            <p class="grant-line must"><strong>The Dad Block</strong> — classic-rock moment (~8:30–9 PM): Night Moves → Hotel California, back to back. For the groom's father. No announcement — just let it land.</p>
             <p class="grant-line must"><strong>the climb back</strong> — J. Cole (explicit). Late-night dedication, drop ~10:15+. A moment for Stephen &amp; Daniel. After the grandparents have left.</p>
             <p class="grant-line must"><strong>ONE FOR YOU</strong> — ALLEYCVT &amp; Levity. End of night. Friends' inside joke — the crew will understand.</p>
             <p class="grant-line must"><strong>Afterhours</strong> — TroyBoi feat. Diplo &amp; Nina Sky. 10 PM+ slot, when the floor belongs to the committed.</p>
+            <p class="grant-line must"><strong>Roses</strong> — The Chainsmokers feat. ROZES. Stephanie's must-play — it's her &amp; Brian's song (Brian owns the farm). Find a good spot for it.</p>
             <p class="grant-line must"><strong>Grand entrance audible:</strong> Primary is High You Are (Branchez Remix). If the lyric vibe-check fails for the room, switch to You &amp; Me (Flume Remix) — same cue, drop on the walk-in.</p>
 
             <div class="grant-tier-head call">○ Grant's Call — your floor, your read</div>
@@ -1097,6 +1131,7 @@
             <p class="grant-line call"><strong>Party-set ammo (play if it fits):</strong> What A Life · Restless Bones · Tennis Court (Flume Remix) · Voices · Happier · Misery (Kaivon &amp; WISNER) · Fancy $hit (CID) · BLUE — save BLUE for late night.</p>
             <p class="grant-line call"><strong>Just fun, if the moment's right:</strong> Sound Of The Underground (Zeds Dead &amp; Urbandawn) — the groom loves the 3:00 moment, let it ride loud if you play it · Stoopid (Bandlez) — late-night, only the bass heads left · Never Going Back Again (Fleetwood Mac) — gentle, dinner or the classic-rock stretch, not the dance floor.</p>
             <p class="grant-line call"><strong>Reception arc:</strong> Crowd-pleasers early, classic rock mid, burn it down late night (post 9 PM).</p>
+            <p class="grant-line call"><strong>The "Stephen" name-drops (optional fun):</strong> Hey Stephen (Taylor's Version) — Taylor Swift · Stephen — Kesha. Drop either if the moment's right. <em>From Stephanie:</em> grab the clip of Kesha singing "Stephen" and do something fun with it. 😜</p>
 
             <div class="grant-tier-head call" style="color:var(--tide);">· Logistics</div>
             <p class="grant-line logi"><strong>Vibe:</strong> 2010s primary, 80s/90s mixed in. Instrumental pop covers for ceremony &amp; cocktail hour.</p>
@@ -1120,7 +1155,28 @@
     <div class="equip-hero">
       <p class="hero-eyebrow" style="text-align:left; margin-bottom:0.75rem;">DJ Equipment</p>
       <h2>Grant's Gear List</h2>
-      <p>Specs from Grant. Source everything near St. Clair, MI — he's driving from Illinois with Shaun. Budget ~$600 — ProAAL quote includes Friday delivery, setup &amp; teardown.</p>
+      <p>Specs from Grant. Source everything near St. Clair, MI — he's driving from Illinois with Shaun. Speakers are Stephen's rental; lighting is likely Grant's. See "The Deal" below for the money split.</p>
+    </div>
+
+    <div class="deadline-block" style="flex-direction:column; align-items:stretch; gap:0.9rem;">
+      <div>
+        <div class="deadline-label">The Deal — with Grant</div>
+        <div class="deadline-value" style="font-size:1.3rem;">$1,000 gear pot + hotel</div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:1.5rem;">
+        <div style="flex:1; min-width:220px;">
+          <div class="deadline-label">The $1k pot</div>
+          <div class="deadline-sub" style="color:var(--text-dim); line-height:1.6;">
+            Stephen gives Grant $1,000. Grant rents gear from it &amp; keeps the remainder. <strong style="color:var(--crab);">⚠ Confirming with Grant:</strong> now that Stephen is renting the speakers separately and Grant has lighting mostly handled, what does the $1k still cover — and is it still the right number?
+          </div>
+        </div>
+        <div style="flex:1; min-width:220px;">
+          <div class="deadline-label">The hotel</div>
+          <div class="deadline-sub" style="color:var(--text-dim); line-height:1.6;">
+            Book a <strong style="color:var(--glass);">double queen</strong>. Shaun stays too &amp; pays half — Stephen's cost roughly halves. Confirm Shaun's half in writing.
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="deadline-block">
@@ -1144,6 +1200,7 @@
           <div class="equip-item-main">Powered PAs, min 12"</div>
           <div class="equip-item-sub">Must be powered (active). At least 12" drivers.</div>
         </div>
+        <div class="equip-note" style="margin-top:0; padding-top:0; border-top:none; color:var(--glass);">Stephen rents these (speakers + sub + stands).</div>
         <div class="equip-brands"><span class="equip-tag tag-preferred">✓ Yorkville PS12P</span></div>
         <div class="equip-brands" style="margin-top:0.4rem;">
           <span class="equip-tag tag-ok">RCF</span>
@@ -1178,13 +1235,13 @@
       </div>
 
       <div class="equip-card">
-        <div class="equip-card-title">Lighting · ×1–2</div>
+        <div class="equip-card-title">Lighting · TBD</div>
         <div class="equip-item">
-          <div class="equip-item-main">Moving head lights + stand</div>
-          <div class="equip-item-sub">Grant's preference is the Chauvet Gigbar Move ILS. Open to comparable solutions.</div>
+          <div class="equip-item-main">Chauvet Gigbar Move ILS</div>
+          <div class="equip-item-sub">Grant owns 1 Gigbar &amp; is considering renting a 2nd when he drives over with Shaun.</div>
         </div>
         <div class="equip-brands"><span class="equip-tag tag-preferred">✓ Chauvet Gigbar Move ILS</span></div>
-        <div class="equip-note">Grant may bring 1 Gigbar from Illinois — confirm with him before booking 2.</div>
+        <div class="equip-note" style="color:var(--crab);">⚠ TBD — confirm with Grant whether a 2nd Gigbar is being rented, and who pays for it. Likely off Stephen's plate.</div>
       </div>
 
       <div class="equip-card">
@@ -1203,7 +1260,7 @@
         </div>
         <div class="equip-item" style="margin-top:0.5rem;">
           <div class="equip-item-main">Hotel room · 2 nights</div>
-          <div class="equip-item-sub">Covered as part of Grant's arrangement</div>
+          <div class="equip-item-sub">Double queen · Shaun stays too &amp; pays half</div>
         </div>
       </div>
 
@@ -1336,15 +1393,16 @@
       <div class="timeline-item">
         <div class="timeline-time"></div>
         <div class="timeline-card">
-          <div class="timeline-event">Officiant, MOB &amp; SMOG enter</div>
-          <div class="timeline-tbd">♪ Song TBD</div>
+          <div class="timeline-event">Mom enters &amp; is seated</div>
+          <div class="timeline-note">Soft instrumental · entrance order — coordinator's call</div>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-time"></div>
-        <div class="timeline-card">
-          <div class="timeline-event">Groom enters with Step-Mom</div>
-          <div class="timeline-song">TBD — Eagles or Bob Seger<span class="timeline-song-artist">— confirm soon</span></div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Groom enters with Dad</div>
+          <div class="timeline-tbd">♪ A Bob Seger song — TBD</div>
+          <div class="timeline-note">Dad walks Stephen in, then steps up to officiate</div>
         </div>
       </div>
       <div class="timeline-item">
@@ -1474,14 +1532,22 @@
         <div class="timeline-time">7:05 PM</div>
         <div class="timeline-card highlight">
           <div class="timeline-event">Mother / Groom Dance</div>
-          <div class="timeline-tbd">♪ Song TBD — with step-mom</div>
+          <div class="timeline-tbd">♪ Song TBD — with Mom</div>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-time">7:10 PM</div>
-        <div class="timeline-card">
+        <div class="timeline-card highlight">
           <div class="timeline-event">Mother / Bride Dance</div>
-          <div class="timeline-tbd">♪ Confirm if happening</div>
+          <div class="timeline-song">Mom<span class="timeline-song-artist">— Meghan Trainor feat. Kelli Trainor</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:12 PM</div>
+        <div class="timeline-card highlight">
+          <div class="timeline-event">Sisters' Dance with niece</div>
+          <div class="timeline-song">Jenna's Song<span class="timeline-song-artist">— Rival Summers</span></div>
+          <div class="timeline-note">Then roll into open dancing</div>
         </div>
       </div>
       <div class="timeline-item">
