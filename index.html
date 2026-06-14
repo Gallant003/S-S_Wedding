@@ -7,22 +7,24 @@
   <title>Stephanie &amp; Stephen · August 29, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      /* St. Clair at dusk */
-      --crab:        #B3503E;   /* crab shell — warnings & do-not-play */
-      --current:     #67D6C5;   /* aqua current — structure & accents */
-      --glass:       #A9E8DE;   /* sea glass — bright accent text */
-      --tide:        #4E9B90;   /* low tide — dim labels */
-      --dusk:        #E9B468;   /* sunset on water — the music glows warm */
-      --foam:        #F2FAF7;   /* foam white */
-      --river:       #08141A;   /* deep dusk water */
-      --depth:       #0E2129;   /* card surface */
-      --text-main:   #E4F0EC;
-      --text-dim:    #9DB8B4;
-      --text-faint:  #5E7A78;
+      /* live rig — booth dark, cyan + magenta */
+      --crab:        #FF4D6D;   /* hot pink-red — warnings & do-not-play */
+      --current:     #18E0FF;   /* electric cyan — structure & accents */
+      --glass:       #6FF0FF;   /* bright cyan — accent text */
+      --tide:        #4AA8C2;   /* dim cyan — labels */
+      --dusk:        #FF4DC8;   /* magenta — the music glows hot */
+      --magenta:     #FF4DC8;   /* explicit magenta token */
+      --cyan:        #18E0FF;   /* explicit cyan token */
+      --foam:        #F4F8FC;   /* near-white */
+      --river:       #05060A;   /* booth black */
+      --depth:       #0C0E16;   /* card surface — charcoal */
+      --text-main:   #E8ECF4;
+      --text-dim:    #97A0B5;
+      --text-faint:  #5A6175;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,9 +44,9 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 90% 55% at 18% 0%, rgba(28,74,84,0.55) 0%, transparent 62%),
-        radial-gradient(ellipse 70% 60% at 85% 100%, rgba(233,180,104,0.07) 0%, transparent 58%),
-        radial-gradient(ellipse 50% 40% at 70% 30%, rgba(103,214,197,0.05) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 50% at 12% 0%, rgba(24,224,255,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 75% 55% at 88% 12%, rgba(255,77,200,0.09) 0%, transparent 58%),
+        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(24,224,255,0.05) 0%, transparent 62%);
       pointer-events: none;
       z-index: 0;
     }
@@ -56,12 +58,13 @@
       padding: 1rem 2.5rem;
       background: rgba(8,20,26,0.86);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(103,214,197,0.15);
+      border-bottom: 1px solid rgba(24,224,255,0.15);
     }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       color: var(--text-dim); text-decoration: none;
-      font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--glass); }
@@ -69,6 +72,14 @@
     .nav-links a.active::after {
       content: ''; display: block; height: 1.5px; margin-top: 3px;
       background: var(--current); border-radius: 1px;
+    }
+
+    /* technical chrome — all uppercase labels read like a deck */
+    .collapse-icon, .card-title, .collapse-meta, .hero-eyebrow,
+    .equip-card-title, .schedule-section-header, .deadline-label,
+    .vendor-role, .status-pill, .equip-tag, .card-time, .yt-label,
+    .tbd-alert-head, .playlist-desc {
+      font-family: 'JetBrains Mono', monospace;
     }
 
     /* ── scroll progress (wayfinding) ── */
@@ -86,14 +97,14 @@
     #sky .layer {
       position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease;
     }
-    /* dawn — pale, cool, soft light rising */
-    #sky .dawn  { background: linear-gradient(170deg, #3d5a6b 0%, #2a4252 35%, #16242e 75%, #0c1820 100%); }
-    /* midday — warmer, brighter, gold creeping in */
-    #sky .day   { background: linear-gradient(170deg, #46685f 0%, #2f5048 30%, #2a3e3a 60%, #16282a 100%); }
-    /* dusk — the sunset: coral & teal, home palette */
-    #sky .dusk  { background: linear-gradient(170deg, #5a4a52 0%, #355058 30%, #1c3a42 60%, #0a1820 100%); }
-    /* night — deep, near-black, last dance */
-    #sky .night { background: linear-gradient(170deg, #14222c 0%, #0a141c 45%, #050c12 75%, #02080c 100%); }
+    /* dawn — room lights, cool and dim */
+    #sky .dawn  { background: linear-gradient(170deg, #10131f 0%, #0c0e16 45%, #07080e 100%); }
+    /* day — cyan wash creeping in */
+    #sky .day   { background: linear-gradient(170deg, #0c1a26 0%, #0a1420 40%, #06080f 100%); }
+    /* dusk — magenta rig glow, peak energy */
+    #sky .dusk  { background: linear-gradient(170deg, #1a0e1e 0%, #140a18 40%, #08060e 100%); }
+    /* night — blackout, last dance */
+    #sky .night { background: linear-gradient(170deg, #0a0c14 0%, #05060a 50%, #020308 100%); }
 
     /* on the schedule page, the sky replaces the ambient glow so the transition reads clearly */
     body.schedule-active::before { opacity: 0; transition: opacity 0.5s ease; }
@@ -169,15 +180,37 @@
       margin: 2.2rem auto 1.6rem;
       overflow: hidden;
       position: relative;
-      filter: drop-shadow(0 0 8px rgba(103,214,197,0.15));
+      filter: drop-shadow(0 0 8px rgba(24,224,255,0.15));
     }
     .wave-divider svg { width: 200%; height: 100%; display: block; }
     .wave-divider path { stroke: currentColor; }
-    .w1 { color: var(--tide);  animation: drift 7s linear infinite; }
-    .w2 { color: var(--dusk);  opacity: 0.55; animation: drift 11s linear infinite reverse; }
-    .w3 { color: var(--glass); opacity: 0.45; animation: drift 9s linear infinite; }
-    .w4 { color: var(--current); opacity: 0.35; animation: drift 13s linear infinite reverse; }
+    .w1 { color: var(--cyan);    animation: drift 7s linear infinite; }
+    .w2 { color: var(--magenta); opacity: 0.6;  animation: drift 11s linear infinite reverse; }
+    .w3 { color: var(--glass);   opacity: 0.45; animation: drift 9s linear infinite; }
+    .w4 { color: var(--magenta); opacity: 0.3;  animation: drift 13s linear infinite reverse; }
     @keyframes drift { from { transform: translateX(0); } to { transform: translateX(-25%); } }
+
+    /* ── EQ-BAR DIVIDER: the booth signature ── */
+    .eq-divider {
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 3px; height: 46px;
+      width: min(440px, 78%); margin: 2.2rem auto 1.6rem;
+      filter: drop-shadow(0 0 6px rgba(24,224,255,0.25));
+    }
+    .eq-divider span {
+      flex: 1; max-width: 5px; border-radius: 2px 2px 0 0;
+      background: linear-gradient(to top, var(--cyan), var(--magenta));
+      animation: eqbar 1.4s ease-in-out infinite;
+      transform-origin: bottom;
+      --min: 0.18;
+    }
+    @keyframes eqbar {
+      0%, 100% { transform: scaleY(var(--min)); opacity: 0.55; }
+      50%      { transform: scaleY(1);          opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .eq-divider span { animation: none; transform: scaleY(0.5); }
+    }
 
     /* ── water eggs ── */
     .ripple {
@@ -214,8 +247,8 @@
     }
     .deadline-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(103,214,197,0.1);
-      border: 1px solid rgba(103,214,197,0.25);
+      background: rgba(24,224,255,0.1);
+      border: 1px solid rgba(24,224,255,0.25);
       border-radius: 2rem; padding: 0.4rem 1rem;
       font-size: 0.9rem; letter-spacing: 0.1em;
       color: var(--glass); margin-bottom: 2.5rem;
@@ -234,7 +267,7 @@
     }
 
     .collapse-section {
-      border: 1px solid rgba(103,214,197,0.12);
+      border: 1px solid rgba(24,224,255,0.12);
       border-radius: 8px;
       margin-bottom: 0.75rem;
       overflow: hidden;
@@ -264,7 +297,7 @@
       color: inherit;
       transition: background 0.2s;
     }
-    .collapse-trigger:hover { background: rgba(103,214,197,0.04); }
+    .collapse-trigger:hover { background: rgba(24,224,255,0.04); }
 
     .collapse-trigger-left {
       display: flex; align-items: center; gap: 1rem;
@@ -295,7 +328,7 @@
     }
     .collapse-section.open .collapse-body {
       max-height: 2000px;
-      border-top-color: rgba(103,214,197,0.08);
+      border-top-color: rgba(24,224,255,0.08);
     }
     .collapse-inner {
       padding: 1.25rem 1.4rem 1.4rem;
@@ -310,12 +343,12 @@
 
     .segment-card {
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(103,214,197,0.08);
+      border: 1px solid rgba(24,224,255,0.08);
       border-radius: 6px;
       overflow: hidden;
       transition: border-color 0.2s;
     }
-    .segment-card:hover { border-color: rgba(103,214,197,0.22); }
+    .segment-card:hover { border-color: rgba(24,224,255,0.22); }
 
     .card-header {
       display: flex; align-items: center; justify-content: space-between;
@@ -334,8 +367,8 @@
       font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
       padding: 0.18rem 0.55rem; border-radius: 1rem; font-weight: 500;
     }
-    .status-locked  { background: rgba(103,214,197,0.14); color: var(--glass); border: 1px solid rgba(103,214,197,0.4); }
-    .status-maybe   { background: rgba(103,214,197,0.15); color: var(--glass); border: 1px solid rgba(103,214,197,0.3); }
+    .status-locked  { background: rgba(24,224,255,0.14); color: var(--glass); border: 1px solid rgba(24,224,255,0.4); }
+    .status-maybe   { background: rgba(24,224,255,0.15); color: var(--glass); border: 1px solid rgba(24,224,255,0.3); }
     .status-empty   { background: rgba(255,255,255,0.04); color: var(--text-faint); border: 1px solid rgba(255,255,255,0.08); }
     .status-surprise{ background: rgba(154,128,220,0.16); color: #C9B8F5; border: 1px solid rgba(154,128,220,0.38); }
 
@@ -437,7 +470,7 @@
       display: flex; align-items: center; gap: 0.5rem;
       font-family: 'Instrument Serif', serif; font-size: 1.15rem;
       margin: 1.2rem 0 0.7rem; padding-bottom: 0.4rem;
-      border-bottom: 1px solid rgba(103,214,197,0.12);
+      border-bottom: 1px solid rgba(24,224,255,0.12);
     }
     .grant-tier-head:first-child { margin-top: 0; }
     .grant-tier-head.must  { color: var(--glass); }
@@ -463,7 +496,7 @@
     }
     .playlist-card {
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(103,214,197,0.08);
+      border: 1px solid rgba(24,224,255,0.08);
       border-radius: 6px; overflow: hidden;
     }
     .playlist-label {
@@ -486,8 +519,8 @@
     .deadline-block {
       margin: 0 2.5rem 2.5rem; max-width: 900px;
       margin-left: auto; margin-right: auto;
-      background: rgba(103,214,197,0.06);
-      border: 1px solid rgba(103,214,197,0.2);
+      background: rgba(24,224,255,0.06);
+      border: 1px solid rgba(24,224,255,0.2);
       border-radius: 8px; padding: 1.25rem 1.5rem;
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 1rem;
@@ -502,7 +535,7 @@
     }
     .equip-card {
       background: var(--depth);
-      border: 1px solid rgba(103,214,197,0.1);
+      border: 1px solid rgba(24,224,255,0.1);
       border-radius: 8px; padding: 1.25rem;
     }
     .equip-card-title { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tide); margin-bottom: 0.75rem; }
@@ -510,7 +543,7 @@
     .equip-item-main { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: var(--foam); }
     .equip-item-sub  { font-size: 0.88rem; color: var(--text-dim); margin-top: 0.1rem; line-height: 1.5; }
     .equip-tag { display: inline-block; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 1rem; margin-top: 0.3rem; }
-    .tag-preferred { background: rgba(103,214,197,0.15); color: var(--glass); border: 1px solid rgba(103,214,197,0.25); }
+    .tag-preferred { background: rgba(24,224,255,0.15); color: var(--glass); border: 1px solid rgba(24,224,255,0.25); }
     .tag-ok        { background: rgba(255,255,255,0.05); color: var(--text-dim); border: 1px solid rgba(255,255,255,0.1); }
     .tag-avoid     { background: rgba(179,80,62,0.3); color: #E8957F; border: 1px solid rgba(179,80,62,0.5); }
     .equip-brands  { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
@@ -538,7 +571,7 @@
     }
     .schedule-section-header::after {
       content: ''; flex: 1; height: 1px;
-      background: linear-gradient(90deg, rgba(103,214,197,0.25), transparent);
+      background: linear-gradient(90deg, rgba(24,224,255,0.25), transparent);
     }
 
     .timeline-item {
@@ -558,15 +591,15 @@
 
     .timeline-card {
       background: var(--depth);
-      border: 1px solid rgba(103,214,197,0.1);
+      border: 1px solid rgba(24,224,255,0.1);
       border-radius: 6px; padding: 0.75rem 1rem;
       transition: border-color 0.2s;
     }
-    .timeline-card:hover { border-color: rgba(103,214,197,0.25); }
+    .timeline-card:hover { border-color: rgba(24,224,255,0.25); }
 
     .timeline-card.highlight {
-      border-color: rgba(103,214,197,0.25);
-      background: rgba(103,214,197,0.05);
+      border-color: rgba(24,224,255,0.25);
+      background: rgba(24,224,255,0.05);
     }
 
     .timeline-event {
@@ -610,7 +643,7 @@
     }
     .vendor-card {
       background: var(--depth);
-      border: 1px solid rgba(103,214,197,0.08);
+      border: 1px solid rgba(24,224,255,0.08);
       border-radius: 6px; padding: 0.75rem 1rem;
     }
     .vendor-role { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tide); margin-bottom: 0.25rem; }
@@ -677,14 +710,7 @@
         <span id="count-days">—</span><span class="count-label" id="count-label">days</span>
       </div>
       <p class="hero-date">August 29, 2026 · Jasak/Dale Farm · Saint Clair, Michigan</p>
-      <div class="wave-divider" aria-hidden="true">
-        <svg viewBox="0 0 120 40" preserveAspectRatio="none">
-          <path class="w1" d="M0,20 C10,8 20,32 30,20 C40,8 50,32 60,20 C70,8 80,32 90,20 C100,8 110,32 120,20" fill="none" stroke-width="1.3" stroke-linecap="round"/>
-          <path class="w2" d="M0,20 C10,30 20,10 30,20 C40,30 50,10 60,20 C70,30 80,10 90,20 C100,30 110,10 120,20" fill="none" stroke-width="1.3" stroke-linecap="round"/>
-          <path class="w3" d="M0,22 C12,14 24,30 36,22 C48,14 60,30 72,22 C84,14 96,30 108,22 C114,18 118,26 120,22" fill="none" stroke-width="1.1" stroke-linecap="round"/>
-          <path class="w4" d="M0,18 C15,26 30,12 45,18 C60,24 75,12 90,18 C105,24 115,14 120,18" fill="none" stroke-width="1" stroke-linecap="round"/>
-        </svg>
-      </div>
+      <div class="eq-divider" aria-hidden="true" id="hero-eq"></div>
     </div>
 
     <div class="sections-wrap">
@@ -1610,6 +1636,24 @@
 
   <script>
     let currentPage = 'music';
+
+    // ── build the EQ-bar divider (live-spectrum look) ──
+    (function buildEq() {
+      const eq = document.getElementById('hero-eq');
+      if (!eq) return;
+      const N = 40;
+      for (let i = 0; i < N; i++) {
+        const s = document.createElement('span');
+        // pseudo-random but stable per-bar timing & height
+        const dur = 0.9 + (Math.sin(i * 1.7) + 1) * 0.45;   // 0.9–1.8s
+        const delay = (i * 0.07) % 1.4;
+        const minH = 0.12 + ((i * 37) % 30) / 100;          // varied floor
+        s.style.animationDuration = dur.toFixed(2) + 's';
+        s.style.animationDelay = '-' + delay.toFixed(2) + 's';
+        s.style.setProperty('--min', minH.toFixed(2));
+        eq.appendChild(s);
+      }
+    })();
 
     function showPage(page, link) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
